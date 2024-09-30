@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Events Example</title>
+    <style>
+      /* Some simple styles for the example */
+      #hoverElement {
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+        text-align: center;
+        line-height: 100px;
+        margin: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Events Examples</h1>
+
+    <!-- Click Event Example -->
+    <button id="clickButton">Click Me!</button>
+    <p id="clickOutput"></p>
+
+    <!-- Mouseover Event Example -->
+    <div id="hoverElement">Hover Over Me!</div>
+    <p id="hoverOutput"></p>
+
+    <!-- Keypress Event Example -->
+    <input type="text" id="keypressInput" placeholder="Type something..." />
+    <p id="keypressOutput"></p>
+
+    <!-- Submit Event Example -->
+    <form id="sampleForm">
+      <input
+        type="text"
+        id="formInput"
+        placeholder="Enter your name"
+        required
+      />
+      <button type="submit">Submit</button>
+    </form>
+    <p id="formOutput"></p>
+
+    <script>
+      // Click Event
+      document.getElementById("clickButton").onclick = function () {
+        document.getElementById("clickOutput").textContent = "Button Clicked!";
+      };
+
+      // Mouseover Event
+      document.getElementById("hoverElement").onmouseover = function () {
+        document.getElementById("hoverOutput").textContent =
+          "Mouse is over the box!";
+      };
+      document.getElementById("hoverElement").onmouseout = function () {
+        document.getElementById("hoverOutput").textContent = "";
+      };
+
+      // Keypress Event
+      document.getElementById("keypressInput").onkeypress = function (event) {
+        document.getElementById("keypressOutput").textContent =
+          "You pressed: " + event.key;
+      };
+
+      // Submit Event
+      document.getElementById("sampleForm").onsubmit = function (event) {
+        event.preventDefault(); // Prevents the form from submitting
+        const name = document.getElementById("formInput").value;
+        document.getElementById("formOutput").textContent =
+          "Form submitted! Hello, " + name + "!";
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Numbers and Operators</title>
+  </head>
+  <body>
+    <h1>JavaScript Numbers and Operators Examples</h1>
+
+    <button onclick="runExample('basicNumbers.js')">Basic Numbers</button>
+    <button onclick="runExample('arithmeticOperators.js')">
+      Arithmetic Operators
+    </button>
+    <button onclick="runExample('assignmentOperators.js')">
+      Assignment Operators
+    </button>
+    <button onclick="runExample('comparisonOperators.js')">
+      Comparison Operators
+    </button>
+    <button onclick="runExample('logicalOperators.js')">
+      Logical Operators
+    </button>
+    <button onclick="runExample('incrementDecrement.js')">
+      Increment and Decrement
+    </button>
+
+    <h2>Output:</h2>
+    <pre id="output"></pre>
+
+    <script>
+      function runExample(fileName) {
+        fetch(fileName)
+          .then((response) => response.text())
+          .then((code) => {
+            // Clear previous console output
+            const outputElement = document.getElementById("output");
+            outputElement.textContent = "";
+
+            // Redirect console.log to the output panel
+            const originalConsoleLog = console.log;
+            console.log = function (...args) {
+              args.forEach((arg) => {
+                outputElement.textContent += arg + "\n";
+              });
+              originalConsoleLog.apply(console, args);
+            };
+
+            // Execute the code
+            new Function(code)();
+
+            // Restore the original console.log
+            console.log = originalConsoleLog;
+          })
+          .catch((err) => {
+            console.error("Error loading the file:", err);
+          });
+      }
+    </script>
+  </body>
+</html>
